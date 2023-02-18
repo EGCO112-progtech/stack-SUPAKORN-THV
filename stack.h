@@ -34,11 +34,12 @@ char pop(StackPtr s, int check){
   return 'e';
 }
 void pop_all(StackPtr s, int check){
+  if(check == 1) printf("Starting pop_all function...\n");
   while(s->size>0) //s->top
     {
       if(check == 1) printf("All : %c\n",pop(s, check));
       else pop(s, 0);
     }
-  if(check == 1) printf("pop_all complete with s->size = %d\n",s->size);
+  if(check == 1) printf("pop_all completed with s->size = %d\n\n",s->size);
 }
 #endif

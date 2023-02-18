@@ -12,6 +12,7 @@ int main(int argc, char **argv){
   Stack s;
   s.top=NULL;
   s.size=0;
+  if(argc == 1) { printf("There is no input!\n"); return 0;}
 //Check d//
 if(strcmp(argv[1],"d")==0){
 check=1;
@@ -31,6 +32,7 @@ for(i=1; i<argc; i++)
             case ']' : 
               temp=pop(&s, check);
               if(temp!='[')flag=1; break;
+            default: printf("There is an unsupported argument : %s\nargv %d: Skipped\n",argv[i],i); j=strlen(argv[i]); goto skip; break;
         }
           }
       if(s.size==0 && flag==0) {
@@ -42,8 +44,8 @@ for(i=1; i<argc; i++)
       } else if(s.size==0 && temp=='e'){
         printf("argv %d: Incorrect: too many closed parenthesis\n",i);
       } else
-        printf("argv %d: Incorrect: mismatch\n",i);
-    }
+        printf("argv %d: Incorrect: mismatch\n",i); skip:
+    } 
   }
   
 else{//Check found Debug-Mode
@@ -67,6 +69,7 @@ else{//Check found Debug-Mode
             else{
               printf("Correct at ]\n");
             } break;
+            default: printf("There is an unsupported argument : %s\nargv %d: Skipped\n\n",argv[i],i);  j=strlen(argv[i]); goto skip2; break;
         }
           }
       if(s.size==0 && flag==0) {
@@ -78,8 +81,8 @@ else{//Check found Debug-Mode
       } else if(s.size==0 && temp=='e'){
         printf("argv %d: Incorrect: too many closed parenthesis with s.size = %d, flag = %d, temp = %c\n\n",i,s.size,flag,temp);
       } else
-        printf("argv %d: Incorrect: mismatch with s.size = %d, flag = %d, temp = %c\n\n",i,s.size,flag,temp);
-    }
+        printf("argv %d: Incorrect: mismatch with s.size = %d, flag = %d, temp = %c\n\n",i,s.size,flag,temp); skip2:
+    } 
   }
   /*push(&top,5);
   printf("%d\n",pop(&top));
